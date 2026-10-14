@@ -1,0 +1,31 @@
+graph legend {
+  graph [fontname="DejaVu Sans" rankdir=LR nodesep=0.25 ranksep=0.3 pad=0.2];
+  node [fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=9];
+  subgraph cluster_a { label=<<B>Kiểu thực thể / liên kết</B>> fontsize=11 style=rounded color="#999999";
+    e1 [shape=box label="ENTITY" style=filled fillcolor="#eef3fb"]; t1 [shape=plaintext label="Kiểu thực thể mạnh"];
+    e2 [shape=box peripheries=2 label="WEAK_ENTITY" style=filled fillcolor="#eef3fb"]; t2 [shape=plaintext label="Kiểu thực thể yếu"];
+    e3 [shape=diamond label="REL" style=filled fillcolor="#fdf3e1" fontsize=8]; t3 [shape=plaintext label="Kiểu liên kết"];
+    e4 [shape=diamond peripheries=2 label="ID_REL" style=filled fillcolor="#fdf3e1" fontsize=8]; t4 [shape=plaintext label="Liên kết xác định (identifying)"];
+    e5 [shape=box style=dashed color="#888888" fontcolor="#666666" label="ENTITY"]; t5 [shape=plaintext label="Thực thể được vẽ chi tiết ở hình khác"];
+    e1--t1 [style=invis]; e2--t2 [style=invis]; e3--t3 [style=invis]; e4--t4 [style=invis]; e5--t5 [style=invis];
+  }
+  subgraph cluster_b { label=<<B>Thuộc tính</B>> fontsize=11 style=rounded color="#999999";
+    a1 [shape=ellipse label="Attribute" fontsize=9]; u1 [shape=plaintext label="Thuộc tính đơn"];
+    a2 [shape=ellipse label=<<U>Key_attr</U>> fontsize=9]; u2 [shape=plaintext label="Thuộc tính khóa"];
+    a3 [shape=ellipse label=<<TABLE BORDER="0" CELLPADDING="0"><TR><TD BORDER="1" SIDES="B" STYLE="dashed">Partial_key</TD></TR></TABLE>> fontsize=9]; u3 [shape=plaintext label="Khóa riêng phần (thực thể yếu)"];
+    a4 [shape=ellipse peripheries=2 label="Multivalued" fontsize=9]; u4 [shape=plaintext label="Thuộc tính đa trị"];
+    a5 [shape=ellipse style=dashed label="Derived" fontsize=9]; u5 [shape=plaintext label="Thuộc tính suy dẫn"];
+    a6 [shape=ellipse label="Composite" fontsize=9]; a6c [shape=ellipse label="Part" fontsize=9]; u6 [shape=plaintext label="Thuộc tính phức hợp"];
+    a1--u1 [style=invis]; a2--u2 [style=invis]; a3--u3 [style=invis]; a4--u4 [style=invis]; a5--u5 [style=invis]; a6--a6c; a6c--u6 [style=invis];
+  }
+  subgraph cluster_c { label=<<B>Ràng buộc cấu trúc &amp; EER</B>> fontsize=11 style=rounded color="#999999";
+    p1 [shape=box label="E1" width=0.4]; p1r [shape=diamond label="R" width=0.4 height=0.4]; p1t [shape=plaintext label="Tham gia toàn phần (đường đôi)\nvà tỷ số 1 / N / M ở đầu cạnh"];
+    p1 -- p1r [color="black:invis:black" label="N"]; p1r--p1t [style=invis];
+    c1 [shape=circle label="d" width=0.3 fixedsize=true]; ct1 [shape=plaintext label="Chuyên biệt hóa rời rạc (disjoint)"];
+    c2 [shape=circle label="o" width=0.3 fixedsize=true]; ct2 [shape=plaintext label="Chuyên biệt hóa chồng lấn (overlapping)"];
+    c3 [shape=plaintext label="⊂"]; ct3 [shape=plaintext label="Lớp con ⊆ lớp cha; nhãn kèm theo là\nvị từ / giá trị thuộc tính định nghĩa"];
+    c4 [shape=box label="SUPER" width=0.4]; c4c [shape=circle label="d" width=0.3 fixedsize=true]; ct4 [shape=plaintext label="Đường đôi từ lớp cha: chuyên biệt hóa toàn phần;\nđường đơn: một phần"];
+    c4 -- c4c [color="black:invis:black"];
+    c1--ct1 [style=invis]; c2--ct2 [style=invis]; c3--ct3 [style=invis]; c4c--ct4 [style=invis];
+  }
+}
